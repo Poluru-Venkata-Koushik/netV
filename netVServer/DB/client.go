@@ -1,14 +1,18 @@
-package DB
+package main
 
-import(
-	"log"
+import (
+	Logging "netVServer/LogPackage"
 )
 
+const (
+	LogFile = "MongoClient.log"
+	PKG     = "Database"
+)
 
-func Client(){
-	log.SetFlags(log.LstdFlags | log)
-	
+var (
+	log = Logging.Logger{Filename: LogFile, PKG: PKG}
+)
 
+func main() {
+	log.ErrorLog("Game start!!")
 }
-
-
