@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: MongoNetV
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: netvroot
+    volumes:
+      - netv:/data/db
+# This is added since skipping this would create a new volume. We are not running the server as shared cluster anyway !
+      - netVConfig:/data/configdb 
+volumes:
+  netv:
+    driver: local
+
+# Refer to comment in volumes section
+  netVConfig:
+    driver: local
