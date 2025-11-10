@@ -20,6 +20,8 @@ var (
 	once      sync.Once
 	ColorCode = map[string]string{
 		"Error": Red,
+		"Info": Blue,
+		"CODE": Green,
 		"Reset": Reset, // This is not needed. Adding it for sanity purposes.
 
 	}
@@ -53,9 +55,17 @@ func WritetoLog(filename string, toLog string, Status string, pkg string) {
 	log.SetOutput(file)
 	log.SetPrefix(" :: " + Status + " :: " + pkg + " ::")
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
-	_ = log.Output(2, ColorCode[Status]+toLog+Reset)
+	_ = log.Output(3, ColorCode[Status]+toLog+Reset)
 
 }
 func (L *Logger) ErrorLog(err string) {
 	WritetoLog(L.Filename, err, "Error", L.PKG)
+}
+
+func (L *Logger) PrintLog(log string) {
+	WritetoLog(L.Filename, log, "CODE", L.PKG)
+}
+
+func (L *Logger) InfoLog(log string) {
+	WritetoLog(L.Filename, log, "Info", L.PKG)
 }

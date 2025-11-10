@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package netV;
+
+option go_package = "netVServer/AAA/pb;pb";
+
+service AAA{
+    rpc CreateToken (Username) returns (JWT);
+}
+
+message Username{
+    string Name = 1;
+    string role = 2;
+}
+
+message JWT{
+    string JWT =1;
+}
+
+
+
+
