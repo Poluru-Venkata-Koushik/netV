@@ -1,0 +1,7 @@
+ :: Info :: SERVER ::2025/11/11 11:51:03 server.go:32: [34mStarting gRPC Server[0m
+ :: CODE :: SERVER ::2025/11/11 11:53:03 server.go:29: [32mStarted listening on port :9876[0m
+ :: Info :: SERVER ::2025/11/11 11:53:03 server.go:34: [34mStarting gRPC Server[0m
+ :: CODE :: SERVER ::2025/11/11 11:53:11 server.go:29: [32mStarted listening on port :9876[0m
+ :: Info :: SERVER ::2025/11/11 11:53:11 server.go:34: [34mStarting gRPC Server[0m
+ :: CODE :: SERVER ::2025/11/11 11:59:49 server.go:29: [32mStarted listening on port :9876[0m
+ :: Info :: SERVER ::2025/11/11 11:59:49 server.go:34: [34mStarting gRPC Server[0m

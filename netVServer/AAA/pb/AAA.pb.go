@@ -7,11 +7,12 @@
 package pb
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -126,9 +127,10 @@ const file_Service_proto_AAA_proto_rawDesc = "" +
 	"\x04Name\x18\x01 \x01(\tR\x04Name\x12\x12\n" +
 	"\x04role\x18\x02 \x01(\tR\x04role\"\x17\n" +
 	"\x03JWT\x12\x10\n" +
-	"\x03JWT\x18\x01 \x01(\tR\x03JWT2/\n" +
+	"\x03JWT\x18\x01 \x01(\tR\x03JWT2Z\n" +
 	"\x03AAA\x12(\n" +
-	"\vCreateToken\x12\x0e.netV.Username\x1a\t.netV.JWTB\x16Z\x14netVServer/AAA/pb;pbb\x06proto3"
+	"\vCreateToken\x12\x0e.netV.Username\x1a\t.netV.JWT\x12)\n" +
+	"\fExtractToken\x12\t.netV.JWT\x1a\x0e.netV.UsernameB\x16Z\x14netVServer/AAA/pb;pbb\x06proto3"
 
 var (
 	file_Service_proto_AAA_proto_rawDescOnce sync.Once
@@ -149,9 +151,11 @@ var file_Service_proto_AAA_proto_goTypes = []any{
 }
 var file_Service_proto_AAA_proto_depIdxs = []int32{
 	0, // 0: netV.AAA.CreateToken:input_type -> netV.Username
-	1, // 1: netV.AAA.CreateToken:output_type -> netV.JWT
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	1, // 1: netV.AAA.ExtractToken:input_type -> netV.JWT
+	1, // 2: netV.AAA.CreateToken:output_type -> netV.JWT
+	0, // 3: netV.AAA.ExtractToken:output_type -> netV.Username
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

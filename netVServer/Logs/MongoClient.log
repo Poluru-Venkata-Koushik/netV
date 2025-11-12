@@ -1,0 +1,11 @@
+ :: CODE :: Database ::2025/11/12 18:48:09 client.go:37: [32mConnected to Mongo[0m
+ :: CODE :: Database ::2025/11/12 18:49:34 client.go:37: [32mConnected to Mongo[0m
+ :: Error :: Database ::2025/11/12 18:49:37 client.go:48: [31mserver selection error: context deadline exceeded, current topology: { Type: Unknown, Servers: [{ Addr: localhost:27018, Type: Unknown, Last error: dial tcp [::1]:27018: connect: connection refused }, ] }[0m
+ :: CODE :: Database ::2025/11/12 18:50:30 client.go:37: [32mConnected to Mongo[0m
+ :: Error :: Database ::2025/11/12 18:50:33 client.go:48: [31mserver selection error: context deadline exceeded, current topology: { Type: Unknown, Servers: [{ Addr: localhost:27018, Type: Unknown, Last error:  connection(localhost:27018[-7]) incomplete read of message header: connection closed unexpectedly by the other side: EOF: connection(localhost:27018[-7]) incomplete read of message header: connection closed unexpectedly by the other side: EOF }, ] }[0m
+ :: CODE :: Database ::2025/11/12 18:57:59 client.go:37: [32mConnected to Mongo[0m
+ :: Error :: Database ::2025/11/12 18:57:59 client.go:48: [31m(Unauthorized) Command insert requires authentication[0m
+ :: CODE :: Database ::2025/11/12 19:00:21 client.go:37: [32mConnected to Mongo[0m
+ :: Error :: Database ::2025/11/12 19:00:21 client.go:48: [31m(Unauthorized) Command insert requires authentication[0m
+ :: CODE :: Database ::2025/11/12 19:01:59 client.go:37: [32mConnected to Mongo[0m
+ :: Info :: Database ::2025/11/12 19:01:59 client.go:50: [34mInserted an Entry ObjectID("69148c4f89f18040e660b4e5")[0m

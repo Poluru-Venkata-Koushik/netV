@@ -6,6 +6,7 @@ option go_package = "netVServer/AAA/pb;pb";
 
 service AAA{
     rpc CreateToken (Username) returns (JWT);
+    rpc ExtractToken (JWT) returns (Username);
 }
 
 message Username{

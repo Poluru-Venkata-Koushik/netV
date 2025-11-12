@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AAA_CreateToken_FullMethodName = "/netV.AAA/CreateToken"
+	AAA_CreateToken_FullMethodName  = "/netV.AAA/CreateToken"
+	AAA_ExtractToken_FullMethodName = "/netV.AAA/ExtractToken"
 )
 
 // AAAClient is the client API for AAA service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AAAClient interface {
 	CreateToken(ctx context.Context, in *Username, opts ...grpc.CallOption) (*JWT, error)
+	ExtractToken(ctx context.Context, in *JWT, opts ...grpc.CallOption) (*Username, error)
 }
 
 type aAAClient struct {
@@ -47,11 +49,22 @@ func (c *aAAClient) CreateToken(ctx context.Context, in *Username, opts ...grpc.
 	return out, nil
 }
 
+func (c *aAAClient) ExtractToken(ctx context.Context, in *JWT, opts ...grpc.CallOption) (*Username, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Username)
+	err := c.cc.Invoke(ctx, AAA_ExtractToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AAAServer is the server API for AAA service.
 // All implementations must embed UnimplementedAAAServer
 // for forward compatibility.
 type AAAServer interface {
 	CreateToken(context.Context, *Username) (*JWT, error)
+	ExtractToken(context.Context, *JWT) (*Username, error)
 	mustEmbedUnimplementedAAAServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedAAAServer struct{}
 
 func (UnimplementedAAAServer) CreateToken(context.Context, *Username) (*JWT, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateToken not implemented")
+}
+func (UnimplementedAAAServer) ExtractToken(context.Context, *JWT) (*Username, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExtractToken not implemented")
 }
 func (UnimplementedAAAServer) mustEmbedUnimplementedAAAServer() {}
 func (UnimplementedAAAServer) testEmbeddedByValue()             {}
@@ -104,6 +120,24 @@ func _AAA_CreateToken_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AAA_ExtractToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JWT)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AAAServer).ExtractToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AAA_ExtractToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AAAServer).ExtractToken(ctx, req.(*JWT))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AAA_ServiceDesc is the grpc.ServiceDesc for AAA service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var AAA_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateToken",
 			Handler:    _AAA_CreateToken_Handler,
+		},
+		{
+			MethodName: "ExtractToken",
+			Handler:    _AAA_ExtractToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
